@@ -41,7 +41,7 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--gd);outline-offs
 .big{grid-column:1/-1}.big b{font-size:22px}
 .it summary{font-size:13px;font-weight:600;color:var(--mu)}.it details{margin:6px 0}.it details p{margin:2px 0}
 .cd{display:inline-block;color:#fff;border-radius:12px;padding:3px 10px;font-size:13px;font-weight:700;margin:3px 5px 3px 0}
-.step{display:grid;grid-template-columns:104px 1fr;gap:8px;align-items:center;margin-bottom:8px}
+.step{display:grid;grid-template-columns:86px 1fr;gap:8px;align-items:center;margin-bottom:8px}
 .seg{display:flex;gap:8px;margin-bottom:10px}
 .seg label{flex:1;text-align:center;border:1px solid var(--bd);border-radius:8px;padding:9px;background:var(--cd)}
 .seg label:has(input:checked){background:var(--al);border-color:var(--gd);font-weight:700}
@@ -65,10 +65,36 @@ th:first-child,td:first-child{position:sticky;left:0;text-align:left;font-weight
 th:first-child{background:var(--nv)}
 tbody tr:nth-child(even) td{background:var(--bg)}tbody tr:nth-child(even) td:first-child{background:var(--bg)}
 td.e{color:var(--mu)}
+
+header{position:relative}
+#lkb{z-index:2;position:absolute;right:10px;top:calc(10px + env(safe-area-inset-top,0px));border:1px solid var(--gd);background:transparent;color:var(--gd);border-radius:8px;padding:6px 10px;font-size:15px}
+#lk{position:fixed;inset:0;z-index:99;background:var(--nv);display:flex;align-items:center;justify-content:center;padding:20px}
+#lk>div{background:var(--cd);color:var(--tx);border-radius:14px;padding:22px;width:100%;max-width:340px;border-top:5px solid var(--gd)}
+#lk h2{display:block;border:0;text-align:center;font-size:18px}
+#lk input{margin-top:10px}
+.kp{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}
+.kp div{background:var(--cd);border:1px solid var(--ao);border-radius:8px;padding:8px;text-align:center}
+.kp small{display:block;color:var(--mu);font-size:12px}.kp b{font-size:24px;color:var(--am)}
+.mr{display:grid;grid-template-columns:84px 1fr 26px;gap:6px;align-items:center;font-size:13px;margin:3px 0}
+.mr .bw{background:var(--bg);border-radius:6px;height:12px;overflow:hidden}.mr .bw i{display:block;height:100%;background:var(--gd)}
+.mr b{text-align:right}
+.lt{background:var(--dg);color:#fff;border-radius:12px;padding:2px 9px;font-size:12px;font-weight:700}
+@media print{header,nav,#inst,.noprint,#lk{display:none!important}body{background:#fff}.it,.c{break-inside:avoid}}
+
+#sy{padding:7px 12px;text-align:center;font-size:13px;font-weight:600;background:var(--ab);color:var(--am);cursor:pointer}
+#sy.w{background:var(--al);color:var(--tx)}#sy.e{background:var(--dg);color:#fff}
+body.ro #sv,body.ro #nw,body.ro [data-d],body.ro #gsv,body.ro #gadd,body.ro #grow,body.ro #gdel,body.ro #gimp,body.ro #grst,body.ro label[for=rs],body.ro #gr button,body.ro #gnew,body.ro #gnewk{display:none!important}
 </style></head><body>
+<div id="lk" hidden><div>
+<h2 id="lk_t">Teny miafina</h2>
+<input type="password" id="lk_p" placeholder="Mot de passe" autocomplete="off">
+<input type="password" id="lk_c" placeholder="Confirmer le mot de passe" autocomplete="off" hidden>
+<div class="hint" id="lk_m" style="color:var(--dg);min-height:16px"></div>
+<button class="btn p" id="lk_go" style="width:100%;margin-top:8px">Ouvrir</button>
+</div></div>
 <button id="inst">📲 Installer l’application</button>
-<header><small>Ressources Humaines</small><h1>GESTION DE PERSONNEL RH</h1></header>
-<nav><button id="t1" class="on">Fiche</button><button id="t2">Liste (<span id="cnt">0</span>)</button><button id="t3">Grille</button></nav>
+<header><button id="lkb" class="noprint" title="Verrouiller">🔒</button><small>Ressources Humaines</small><h1>GESTION DE PERSONNEL RH</h1></header><div id="sy" class="noprint"></div>
+<nav><button id="t1" class="on">Fiche</button><button id="t2">Liste (<span id="cnt">0</span>)</button><button id="t3">Grille</button><button id="t4">Tableau</button></nav>
 <main>
 <div id="v1">
 <section class="c"><h2>Identité</h2>
@@ -131,34 +157,61 @@ td.e{color:var(--mu)}
 <textarea id="gt" rows="6" placeholder="Types;Catégorie;Grade;Indice;Ans"></textarea>
 <div class="bar"><button class="btn p" id="gimp">Importer</button><button class="btn" id="gexp">Hamoaka lahatsoratra</button><button class="btn d" id="grst">Averina ny grille de base</button></div></details>
 </div>
+
+<div id="v4" hidden>
+<section class="c"><h2>Avancements de l’année</h2>
+<div class="row"><div><label class="f">Année</label><select id="dy"></select></div>
+<div><label class="f">Statut</label><select id="ds"><option value="">Tous</option><option value="0">En cours</option><option value="1">Terminés (SOLDE)</option></select></div></div>
+<input type="search" id="dq" placeholder="Recherche : IM ou nom" style="margin-top:10px">
+<div class="kp" id="kp"></div>
+<div id="dt" style="margin-bottom:8px"></div>
+<div id="dm"></div></section>
+<div id="dl"></div>
+<div class="bar noprint"><button class="btn" id="dx">Exporter CSV</button><button class="btn" id="dpr">Imprimer / PDF</button></div>
+<details class="c noprint" id="syp"><summary>☁ Synchronisation Google Sheets</summary>
+<label class="f">Lien du serveur (URL Apps Script)</label><input type="text" id="sy_u" placeholder="https://script.google.com/macros/s/…/exec" autocomplete="off" autocapitalize="off">
+<label class="f">Clé d’accès</label><input type="password" id="sy_k" autocomplete="off">
+<label class="f">Votre nom (pour l’historique)</label><input type="text" id="sy_n" autocomplete="off">
+<div class="bar"><button class="btn p" id="sy_s">Enregistrer et synchroniser</button><button class="btn" id="sy_g">Synchroniser maintenant</button><button class="btn d" id="sy_x">Déconnecter</button></div>
+<div class="hint" id="sy_i"></div><div id="sy_c"></div></details>
+<details class="c noprint"><summary>🔒 Changer le mot de passe</summary>
+<label class="f">Mot de passe actuel</label><input type="password" id="pw0" autocomplete="off">
+<label class="f">Nouveau mot de passe</label><input type="password" id="pw1" autocomplete="off">
+<label class="f">Confirmer</label><input type="password" id="pw2" autocomplete="off">
+<div class="bar"><button class="btn p" id="pws">Changer</button></div><div class="hint" id="pwm"></div>
+<div class="hint">Raha adino ny teny miafina dia tsy azo averina : manaova Backup (JSON) matetika.</div></details>
+</div>
 </main>
 <script>
 const AV=[["Contrat de travail",2,1],["Avancement d’échelon",2,1],["Avancement de classe",3,1],["Avenant",2,1],["Titulé",1,0],["Intégration",0,0],["Majoration I",0,3],["Bonification",0,3],["RI",4,2],["M.I",2,2],["IIR",0,3],["CNP",0,3]];
-const ST={C:["FOP","VISA","CF","PREFET","SOLDE"],F:["FOP","VISA","CF","FOP VAK","FOP TANA","PREFET","SOLDE"]};
-const SC={FOP:"#1565C0",VISA:"#7B1FA2",CF:"#E65100",PREFET:"#C62828","FOP TANA":"#AD1457","FOP VAK":"#00838F",SOLDE:"#2E7D32"};
-const sname=(t,i)=>ST[t][i];
-const slabel=sname;
+const ST={C:["FOP","VISA","CF","PREFET","SOLDE"],F:["FOP","VISA","CF","PREFET","TANA","FOP","SOLDE"]};
+const SC={FOP:"#1565C0",VISA:"#7B1FA2",CF:"#E65100",PREFET:"#C62828",TANA:"#AD1457",FOP2:"#00838F",SOLDE:"#2E7D32"};
+const sname=(t,i)=>t==="F"&&i===5?"FOP2":ST[t][i];
+const slabel=(t,i)=>sname(t,i)==="FOP2"?"FOP 2":ST[t][i];
 function chips(p){const t=p.ty||"C",c=(p.st||[]).map((v,i)=>v?`<span class="cd" style="background:${SC[sname(t,i)]}">${slabel(t,i)} : ${fmt(v)}</span>`:"").join("");return c?`<div><small class="hint">Circuit ${t==="F"?"Fonctionnaire":"Contractuel"}</small><br>${c}</div>`:'<p>Circuit : tsy mbola natomboka</p>'}
 const $=i=>document.getElementById(i);
 const ld=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}};
 let G=ld("rh_grille2",{}),L=ld("rh_pers",[]),eid=null,gcur="";
-const sv=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){$("msg").textContent="Stockage indisponible : exportez en CSV."}};
-L.forEach(p=>{if(p.ty==="F"&&p.cv!==2){const o=p.st||[];p.st=[o[0]||"",o[1]||"",o[2]||"",o[5]||"",o[4]||"",o[3]||"",o[6]||""];p.cv=2}});
+const sv=(k,v,q)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){$("msg").textContent="Stockage indisponible : exportez en CSV."}if(!q&&window.__syr&&(k==="rh_pers"||k==="rh_grille2"))schedSync()};
 const fmt=s=>s?s.split("-").reverse().join("/"):"";
 const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const opts=(arr,sel)=>'<option value="">—</option>'+arr.map(x=>`<option${x===sel?" selected":""}>${esc(x)}</option>`).join("");
 /* Grilles par défaut : clé = Corps|Catégorie ; lignes = grade, indice, années requises */
 const DEF=(()=>{const o={};
+const MG=["ST0E","2C1E","2C2E","2C3E","1C1E","1C2E","1C3E","PR1E","PR2E","PR3E","EX1E","EX2E","EX3E","EX4E","EX5E","EX6E","EX7E","EX8E","EX9E"];
+const M8=[1600,1700,1850,2050,2250,2400,2600,2800,2950,3150,3350,3450,3550,3650,3750,3850,3950,4050,4150];
+const M9=[1750,1850,2000,2200,2400,2550,2750,2950,3100,3300,3500,3600,3700,3800,3900,4000,4100,4200,4300];
+const MY=[1,1,2,2,3,2,2,3,2,2,3,2,2,2,2,2,2,2,2];
+o["Médecins|CAT VIII (A94A)"]=MG.map((g,i)=>({g,i:""+M8[i],y:""+MY[i]}));
+o["Médecins|CAT IX (A94I)"]=MG.map((g,i)=>({g,i:""+M9[i],y:""+MY[i]}));
 const E=[["Auxiliaire I",[260,264,268,276,284,288,292,300,308]],["Auxiliaire II",[276,284,292,304,316,332,348,364,380]],["Auxiliaire III",[356,372,388,404,420,438,455,477,499]],["Auxiliaire IV",[420,438,455,473,499,530,560,591,619]]];
 E.forEach(([k,v])=>o["EFA Auxiliaire|"+k]=v.map((x,j)=>({g:"Échelon "+(j+1),i:""+x,y:"2"})));
 const FG=["STOE","2C1E","2C2E","2C3E","1C1E","1C2E","1C3E","PR1E","PR2E","PR3E","EX1E","EX2E"],FY=[1,1,2,2,3,2,2,3,2,2,3,2];
 const FC=["Cat I (CEPE)","Cat II (BEPC)","Cat III (BAC)","Cat IV (Dipl. 1er cycle)","Cat V (Licence)","Cat VI (Maîtrise)","Cat VII","Cat VIII (DEA)","Cat IX (Doctorat 3e cycle)","Cat X (Doctorat d’État)"];
 const FV=[[275,295,310,350,370,395,415,440,460,490,515,675],[380,415,435,455,490,515,540,570,605,640,675,1020],[500,540,580,620,665,715,765,825,885,950,1020,1550],[605,665,730,800,880,970,1065,1170,1285,1410,1550,1600],[650,710,780,850,930,1020,1115,1220,1335,1460,1600,1750],[750,815,900,970,1055,1145,1250,1360,1480,1610,1750,1850],[850,920,995,1075,1160,1255,1355,1465,1585,1710,1850,2225],[950,1035,1125,1225,1335,1455,1585,1725,1880,2045,2225,2325],[1100,1185,1280,1380,1485,1600,1725,1860,2000,2155,2325,2425],[0,0,0,0,0,1920,2120,2220,2450,2520,2620,0]];
 FV.forEach((col,c)=>o["Fonctionnaire|"+FC[c]]=FG.map((g,j)=>({g,i:""+col[j],y:""+FY[j]})).filter(x=>+x.i));
-const EN=[["Cat I – EDS (D00A)",[260,280,300,320,340,360,380,410,445,480,515,675]],["Cat I – EA (D06A)",[300,315,335,350,910,395,415,440,460,490,515,675]],["Cat I – INST (D88A)",[340,355,370,385,400,415,435,455,475,495,515,675]],["Cat II – Ass.Sce (C00A)",[360,385,410,440,470,500,530,560,595,635,675,1020]],["Cat II – AS.D (C06A)",[380,415,435,455,490,515,540,570,605,640,675,1020]],["Cat II – INST (C88A)",[430,450,470,490,525,545,570,600,620,645,675,1020]],["Cat III – Adj.Sce (B00A)",[480,520,560,600,650,700,750,810,875,945,1020,1550]],["Cat III – INST/ECO/MEPS/PTA (B88A-DE)",[575,610,640,670,725,770,815,860,910,965,1020,1550]],["Cat III – Adj.Adm/AC (B88B)",[500,540,580,620,665,715,765,825,885,950,1020,1550]],["Cat IV – CE (A88F)",[625,685,750,820,920,1000,1095,1220,1325,1430,1550,1600]],["Cat V – CE/INT.UN/Att.Adm/AC (A88S)",[650,710,780,850,930,1020,1115,1220,1335,1460,1600,1750]],["Cat VI – PL/PET (A88E)",[750,815,900,970,1105,1195,1290,1390,1500,1610,1750,1850]],["Cat VII – PC/IEP (A88C)",[850,920,995,1075,1160,1255,1355,1460,1585,1710,1850,2225]],["Cat VIII – AESR-PC (A88U)",[950,1035,1125,1225,1335,1455,1585,1725,1880,2045,2225,2325]]];
-EN.forEach(([k,v])=>o["Enseignants|"+k]=FG.map((g,j)=>({g,i:""+v[j],y:""+FY[j]})));
 return o})();
-if(ld("rh_seed",0)<3){for(const k in G)if(k.startsWith("EFA Auxiliaires|")||k.startsWith("Médecins|"))delete G[k];for(const k in DEF)if(!G[k])G[k]=DEF[k];sv("rh_grille2",G);try{localStorage.setItem("rh_seed","3")}catch(e){}}
+if(ld("rh_seed",0)<2){for(const k in G)if(k.startsWith("EFA Auxiliaires|"))delete G[k];for(const k in DEF)if(!G[k])G[k]=DEF[k];sv("rh_grille2",G);try{localStorage.setItem("rh_seed","2")}catch(e){}}
 const KS=()=>Object.keys(G),CL=()=>[...new Set(KS().map(k=>k.split("|")[0]))],KL=c=>KS().filter(k=>k.startsWith(c+"|")).map(k=>k.split("|")[1]),FK=(c,k)=>k?c+"|"+k:c;
 const ind=(c,g)=>((G[c]||[]).find(r=>r.g===g)||{}).i||"";
 const nm=k=>k.replace("|"," › ");
@@ -189,7 +242,7 @@ function calc(p){
   if(y){const[Y,m,j]=p.d1.split("-");d2=`${+Y+y}-${m}-${j}`}else d2=p.d2m||"";
   return{d2,c2:p.c1,k2,g2:g,i2:i,note,y};
 }
-function get(){return{cv:2,hist:((L.find(x=>x.id===eid)||{}).hist)||[],m:{d:$("m_d").value,c:$("m_c").value,k:$("m_k").value,g:$("m_g").value,i:$("m_i").value},id:eid||String(Date.now()),im:$("im").value.trim(),nom:$("nom").value.trim(),d1:$("d1").value,c1:$("c1").value,k1:$("k1").value,ck:ck(),g1:$("g1").value,i1:$("i1").value,av:avv(),d2m:$("d2m").value,ty:ty(),st:[...document.querySelectorAll("[data-s]")].map(x=>x.value)}}
+function get(){return{hist:((L.find(x=>x.id===eid)||{}).hist)||[],m:{d:$("m_d").value,c:$("m_c").value,k:$("m_k").value,g:$("m_g").value,i:$("m_i").value},id:eid||String(Date.now()),im:$("im").value.trim(),nom:$("nom").value.trim(),d1:$("d1").value,c1:$("c1").value,k1:$("k1").value,ck:ck(),g1:$("g1").value,i1:$("i1").value,av:avv(),d2m:$("d2m").value,ty:ty(),st:[...document.querySelectorAll("[data-s]")].map(x=>x.value)}}
 const cn=(c,k)=>(c||"")+(k?" › "+k:"");
 function upd(){
   $("kw").hidden=!KL($("c1").value).length;
@@ -252,8 +305,8 @@ $("sv").onclick=()=>{
 };
 $("nw").onclick=()=>put(null);
 const cnt=()=>$("cnt").textContent=L.length;
-function show(n){[1,2,3].forEach(i=>{$("v"+i).hidden=i!==n;$("t"+i).className=i===n?"on":""});if(n===2)list();if(n===3)gdraw()}
-$("t1").onclick=()=>show(1);$("t2").onclick=()=>show(2);$("t3").onclick=()=>show(3);
+function show(n){[1,2,3,4].forEach(i=>{$("v"+i).hidden=i!==n;$("t"+i).className=i===n?"on":""});if(n===2)list();if(n===3)gdraw();if(n===4)dash()}
+$("t1").onclick=()=>show(1);$("t2").onclick=()=>show(2);$("t3").onclick=()=>show(3);$("t4").onclick=()=>show(4);
 
 function prog(p){const n=ST[p.ty||"C"];let k=-1;(p.st||[]).forEach((v,i)=>{if(v)k=i});return k<0?"Circuit : tsy mbola natomboka":`Circuit : ${n[k]} (${fmt(p.st[k])})`}
 function list(){
@@ -308,7 +361,7 @@ $("gexp").onclick=()=>{$("gt").value=KS().flatMap(k=>{const[c,t]=k.split("|");re
 $("grst").onclick=e=>{if(e.target.dataset.arm){for(const k in DEF)G[k]=JSON.parse(JSON.stringify(DEF[k]));sv("rh_grille2",G);e.target.dataset.arm="";e.target.textContent="Averina ny grille de base";gdraw()}else{e.target.dataset.arm=1;e.target.textContent="Confirmer ?"}};
 
 $("bk").onclick=()=>{const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify({v:1,L,G})],{type:"application/json"}));a.download="rh-backup-"+new Date().toISOString().slice(0,10)+".json";a.click()};
-$("rs").onchange=e=>{const f=e.target.files[0];if(!f)return;const rd=new FileReader();rd.onload=()=>{try{const d=JSON.parse(rd.result);if(d.L)L=d.L;if(d.G)G=d.G;sv("rh_pers",L);sv("rh_grille2",G);cnt();put(null);list();$("msg2").textContent="Naverina ✓"}catch(x){$("msg2").textContent="Rakitra tsy mety."}};rd.readAsText(f)};
+$("rs").onchange=e=>{const f=e.target.files[0];if(!f)return;const rd=new FileReader();rd.onload=()=>{try{const d=JSON.parse(rd.result);const sy=!!(SY.url&&SY.key);if(d.L){if(sy){const m=new Map(L.map(p=>[p.id,p]));d.L.forEach(p=>m.set(p.id,p));L=[...m.values()]}else L=d.L}if(d.G){if(sy)Object.assign(G,d.G);else G=d.G}sv("rh_pers",L);sv("rh_grille2",G);cnt();put(null);list();$("msg2").textContent="Naverina ✓"}catch(x){$("msg2").textContent="Rakitra tsy mety."}};rd.readAsText(f)};
 if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().then(ok=>{$("st").textContent=ok?"Fitehirizana maharitra ao amin’ny finday ✓":"Voatahiry ao amin’ny finday. Atao backup tsindraindray."}).catch(()=>{});
 /* PWA */
 let dp=null;
@@ -317,5 +370,173 @@ if(matchMedia("(display-mode: standalone)").matches||navigator.standalone)$("ins
 window.addEventListener("appinstalled",()=>{$("inst").hidden=true});
 $("inst").onclick=async()=>{if(dp){dp.prompt();await dp.userChoice;dp=null}else alert("Tsindrio ny menu ⋮ an’ny Chrome, dia fidio « Installer l’application » na « Ajouter à l’écran d’accueil ».")};
 if("serviceWorker"in navigator)navigator.serviceWorker.register("sw.js").catch(()=>{});
+
+/* Tableau de bord : avancements par année */
+const MN=["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"];
+let dY=new Date().getFullYear();
+const yOf=d=>+String(d||"").slice(0,4);
+function dall(y){const r=[];
+  L.forEach(p=>{const n=p.n;
+    if(p.av!=null&&n&&n.d2&&yOf(n.d2)===y)r.push({p,d:n.d2,av:AV[p.av][0],fr:`${p.g1||""} (${p.i1||""})`,g:n.g2,i:n.i2,done:false,pr:prog(p)});
+    (p.hist||[]).forEach(h=>{if(h.n&&h.n.d2&&yOf(h.n.d2)===y)r.push({p,d:h.n.d2,av:h.av!=null?AV[h.av][0]:"",fr:`${h.g1||""} (${h.i1||""})`,g:h.n.g2,i:h.n.i2,done:true,pr:"SOLDE "+fmt(h.sd)})})});
+  return r.sort((a,b)=>a.d<b.d?-1:a.d>b.d?1:0)}
+function dyrs(){const s=new Set([new Date().getFullYear()]);L.forEach(p=>{if(p.n&&p.n.d2)s.add(yOf(p.n.d2));(p.hist||[]).forEach(h=>h.n&&h.n.d2&&s.add(yOf(h.n.d2)))});return[...s].filter(y=>y>2000&&y<2100).sort()}
+function dflt(){const q=$("dq").value.toLowerCase().trim(),st=$("ds").value;return dall(dY).filter(r=>(!q||(r.p.im+" "+r.p.nom).toLowerCase().includes(q))&&(st===""||(st==="1")===r.done))}
+function dash(){
+  const ys=dyrs();if(!ys.includes(dY))dY=ys[ys.length-1];
+  $("dy").innerHTML=ys.map(y=>`<option${y===dY?" selected":""}>${y}</option>`).join("");
+  const r=dflt(),dn=r.filter(x=>x.done).length,today=new Date().toISOString().slice(0,10);
+  $("kp").innerHTML=`<div><small>Total ${dY}</small><b>${r.length}</b></div><div><small>En cours</small><b>${r.length-dn}</b></div><div><small>Terminés</small><b>${dn}</b></div>`;
+  const t={},m=Array(12).fill(0);r.forEach(x=>{const k=x.av||"—";t[k]=(t[k]||0)+1;m[+x.d.slice(5,7)-1]++});
+  $("dt").innerHTML=Object.entries(t).map(([k,v])=>`<span class="tag" style="margin:2px 4px 2px 0">${esc(k)} : ${v}</span>`).join("");
+  const mx=Math.max(1,...m);
+  $("dm").innerHTML=m.map((v,i)=>`<div class="mr"><span>${MN[i]}</span><div class="bw"><i style="width:${v/mx*100}%"></i></div><b>${v}</b></div>`).join("");
+  $("dl").innerHTML=r.length?r.map(x=>`<div class="it" style="border-left-color:${x.done?"var(--ao)":"var(--gd)"}"><h3>${esc(x.p.nom)||"(tsy misy anarana)"} <span class="tag">IM ${esc(x.p.im)}</span></h3>
+  <div class="am"><b>${esc(x.av)}</b> → <b>${fmt(x.d)}</b><br>${esc(x.fr)} → ${esc(x.g)} (${esc(x.i)})</div>
+  <p>${x.done?"✓ Terminé":"En cours"} · ${esc(x.pr)} ${!x.done&&x.d<today?'<span class="lt">Date dépassée</span>':""}</p></div>`).join(""):'<p class="hint">Aucun avancement pour cette année.</p>';
+}
+$("dy").onchange=()=>{dY=+$("dy").value;dash()};$("ds").onchange=dash;$("dq").oninput=dash;
+$("dpr").onclick=()=>window.print();
+$("dx").onclick=()=>{
+  const h=["Année","IM","Nom","Date effet","Avancement","Grade actuel (indice)","Nouveau grade","Nouvel indice","Statut","Circuit"];
+  const rows=dflt().map(x=>[dY,x.p.im,x.p.nom,fmt(x.d),x.av,x.fr,x.g,x.i,x.done?"Terminé":"En cours",x.pr]);
+  const csv="\ufeff"+[h,...rows].map(r=>r.map(c=>`"${String(c==null?"":c).replace(/"/g,'""')}"`).join(";")).join("\r\n");
+  const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([csv],{type:"text/csv"}));a.download="avancements-"+dY+".csv";a.click()};
+
+/* Mot de passe (verrou d’écran) */
+async function hsh(v,salt){
+  if(window.crypto&&crypto.subtle){const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(salt+":"+v));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join("")}
+  let h=5381;const t=salt+":"+v;for(let i=0;i<t.length;i++)h=((h<<5)+h+t.charCodeAt(i))|0;return"f"+h}
+const PW=()=>ld("rh_pw",null);
+const isOk=()=>{try{return sessionStorage.getItem("rh_ok")==="1"}catch(e){return false}};
+function lockUI(){const p=PW();$("lk").hidden=false;
+  $("lk_t").textContent=p?"Ampidiro ny teny miafina":"Mamorona teny miafina";
+  $("lk_c").hidden=!!p;$("lk_go").textContent=p?"Ouvrir":"Créer et ouvrir";
+  $("lk_p").value="";$("lk_c").value="";$("lk_m").textContent=""}
+function unlock(){$("lk").hidden=true;try{sessionStorage.setItem("rh_ok","1")}catch(e){}}
+$("lk_go").onclick=async()=>{const p=PW(),v=$("lk_p").value;
+  if(!p){if(v.length<4){$("lk_m").textContent="4 caractères minimum.";return}
+    if(v!==$("lk_c").value){$("lk_m").textContent="Tsy mitovy ny roa.";return}
+    const s=Date.now()+"-"+Math.random();sv("rh_pw",{s,h:await hsh(v,s)});unlock()}
+  else{if(await hsh(v,p.s)===p.h)unlock();else{$("lk_m").textContent="Diso ny teny miafina.";$("lk_p").value=""}}};
+["lk_p","lk_c"].forEach(k=>$(k).onkeydown=e=>{if(e.key==="Enter")$("lk_go").click()});
+$("lkb").onclick=()=>{try{sessionStorage.removeItem("rh_ok")}catch(e){}lockUI()};
+$("pws").onclick=async()=>{const p=PW(),m=$("pwm");
+  if(p&&await hsh($("pw0").value,p.s)!==p.h){m.textContent="Mot de passe actuel incorrect.";return}
+  const n=$("pw1").value;if(n.length<4){m.textContent="4 caractères minimum.";return}
+  if(n!==$("pw2").value){m.textContent="Tsy mitovy ny roa.";return}
+  const s=Date.now()+"-"+Math.random();sv("rh_pw",{s,h:await hsh(n,s)});
+  ["pw0","pw1","pw2"].forEach(k=>$(k).value="");m.textContent="Voaova ✓"};
+if(!isOk())lockUI();
+
+/* ===== Synchronisation Google Sheets (local d’abord, serveur ensuite) ===== */
+const hs=s=>{let h1=0xdeadbeef,h2=0x41c6ce57;for(let i=0;i<s.length;i++){const c=s.charCodeAt(i);h1=Math.imul(h1^c,2654435761);h2=Math.imul(h2^c,1597334677)}h1=Math.imul(h1^(h1>>>16),2246822507)^Math.imul(h2^(h2>>>13),3266489909);h2=Math.imul(h2^(h2>>>16),2246822507)^Math.imul(h1^(h1>>>13),3266489909);return(4294967296*(2097151&h2)+(h1>>>0)).toString(36)};
+let SY=ld("rh_sync",{url:"",key:"",nm:"",role:"",last:""}),SS=ld("rh_sy",{P:{},G:{}}),CF=ld("rh_conf",[]);
+if(!SS.P)SS.P={};if(!SS.G)SS.G={};
+let syBusy=false,syAgain=false,syT=null,syState="",syErr="";
+const syOn=()=>!!(SY.url&&SY.key);
+const syItems=c=>{const m={};if(c==="P")L.forEach(p=>{m[p.id]=JSON.stringify(p)});else for(const k in G)m[k]=JSON.stringify(G[k]);return m};
+const known=c=>{const o={};for(const id in SS[c])o[id]=SS[c][id].v;return o};
+function flat(p){const n=p.n||{},t=p.ty||"C",nn=ST[t],e=[];let k=-1;
+  (p.st||[]).forEach((v,i)=>{if(v){e.push(slabel(t,i)+" "+fmt(v));k=i}});
+  return{"IM":p.im||"","Nom":p.nom||"","Types":p.c1||"","Catégorie":p.k1||"","Grade":p.g1||"","Indice":p.i1||"","Date effet":fmt(p.d1),"Avancement":p.av!=null&&AV[p.av]?AV[p.av][0]:"","Nouvelle date":fmt(n.d2),"Nouveau grade":n.g2||"","Nouvel indice":n.i2||"","Circuit":t==="F"?"Fonctionnaire":"Contractuel","Étapes":e.join(" | "),"Dernière étape":k<0?"Non commencé":slabel(t,k)+" "+fmt(p.st[k])}}
+function syChanges(){const out={P:[],G:[]};
+  ["P","G"].forEach(c=>{const cur=syItems(c),st=SS[c],pm=c==="P"?new Map(L.map(p=>[p.id,p])):null;
+    for(const id in cur){const h=hs(cur[id]),s=st[id];if(!s||s.s!==h)out[c].push({id,bv:s?s.v:0,h,d:cur[id],f:pm?flat(pm.get(id)):null})}
+    for(const id in st){if(st[id].s!==null&&!(id in cur))out[c].push({id,bv:st[id].v,h:"DEL",del:true})}});
+  return out}
+const syPending=()=>{if(SY.role==="r")return 0;const c=syChanges();return c.P.length+c.G.length};
+function syTake(c,id,rec){const st=SS[c];
+  if(rec.del){if(c==="P")L=L.filter(p=>p.id!==id);else delete G[id];st[id]={v:rec.v,s:null};return}
+  let o;try{o=JSON.parse(rec.d)}catch(e){return}
+  if(c==="P"){const i=L.findIndex(p=>p.id===id);if(i>=0)L[i]=o;else L.unshift(o)}else G[id]=o;
+  st[id]={v:rec.v,s:hs(JSON.stringify(o))}}
+function syApply(c,r,sent,bad){let chg=false;const st=SS[c];r=r||{};
+  (r.acks||[]).forEach(a=>{const ch=sent.find(x=>x.id===a.id);if(!ch)return;
+    if(a.st==="ok"||a.st==="dup")st[a.id]={v:a.v,s:ch.del?null:ch.h};
+    else if(a.st==="conflict"){if(!ch.del)CF.push({c,id:a.id,t:new Date().toISOString(),d:ch.d});syTake(c,a.id,a.rec);chg=true}
+    else if(a.st==="ro")SY.role="r";
+    else{bad.add(c+"|"+a.id);syErr=(a.msg||"Erreur")+" ("+a.id+")"}});
+  const cur=syItems(c);
+  (r.up||[]).forEach(u=>{const s=st[u.id],loc=cur[u.id];
+    const clean=SY.role==="r"||(s?(loc===undefined?s.s===null:hs(loc)===s.s):loc===undefined);
+    if(!clean)return;syTake(c,u.id,u);chg=true});
+  (r.miss||[]).forEach(id=>{if(cur[id]!==undefined)st[id]={v:0,s:""};else delete st[id]});
+  return chg}
+async function syCall(body){const ac=new AbortController(),t=setTimeout(()=>ac.abort(),90000);
+  try{const r=await fetch(SY.url,{method:"POST",body:JSON.stringify(body),signal:ac.signal,redirect:"follow"});
+    const tx=await r.text();let j;try{j=JSON.parse(tx)}catch(e){throw new Error("Réponse invalide du serveur : vérifiez le lien et le déploiement (accès : Tout le monde).")}return j}
+  finally{clearTimeout(t)}}
+const ERR={cle:"Clé d’accès incorrecte",cles_non_configurees:"Les clés n’ont pas été changées dans Code.gs",occupe:"Serveur occupé, nouvel essai automatique"};
+function schedSync(){if(!syOn()||!window.__syr)return;clearTimeout(syT);syT=setTimeout(syRun,1500);syBadge()}
+async function syRun(){
+  if(!syOn()){syBadge();return}
+  if(syBusy){syAgain=true;return}
+  if(!navigator.onLine){syState="off";syBadge();return}
+  syBusy=true;syState="run";syErr="";syBadge();
+  const bad=new Set();let retry=0;
+  try{
+    if(!SS.init){for(const k in G)if(DEF[k]&&JSON.stringify(G[k])===JSON.stringify(DEF[k]))SS.G[k]={v:0,s:hs(JSON.stringify(G[k]))};SS.init=1;sv("rh_sy",SS,true)}
+    for(let it=0;it<100;it++){
+      const all=SY.role==="r"?{P:[],G:[]}:syChanges();
+      all.P=all.P.filter(x=>!bad.has("P|"+x.id));all.G=all.G.filter(x=>!bad.has("G|"+x.id));
+      const part={P:all.P.slice(0,30),G:all.G.slice(0,30)};
+      const res=await syCall({k:SY.key,nm:SY.nm,P:{ch:part.P,kn:known("P")},G:{ch:part.G,kn:known("G")}});
+      if(!res.ok){if(res.err==="occupe")retry=8000;throw new Error(ERR[res.err]||res.err||"Erreur serveur")}
+      SY.role=res.role;
+      const a=syApply("P",res.P,part.P,bad),b=syApply("G",res.G,part.G,bad);
+      if(a)sv("rh_pers",L,true);if(b)sv("rh_grille2",G,true);
+      sv("rh_sy",SS,true);sv("rh_conf",CF,true);sv("rh_sync",SY,true);
+      if(a||b)syRefresh(b);
+      const left=all.P.length-part.P.length+all.G.length-part.G.length;
+      if(!left&&!res.P.more&&!res.G.more)break;
+      if(SY.role==="r"&&!res.P.more&&!res.G.more)break}
+    SY.last=new Date().toISOString();sv("rh_sync",SY,true);
+    syState=bad.size?"err":"ok"
+  }catch(e){
+    const net=e&&(e.name==="TypeError"||e.name==="AbortError");
+    syState=net?"off":"err";syErr=net?"Serveur injoignable":(e.message||"Erreur");
+    if(net)retry=30000;
+  }
+  syBusy=false;syBadge();
+  if(syAgain){syAgain=false;setTimeout(syRun,500)}else if(retry)setTimeout(syRun,retry)}
+function syRefresh(g){cnt();if(!$("v2").hidden)list();if(!$("v4").hidden)dash();if(!$("v3").hidden)gview();
+  if(g){const c=$("c1").value,k=$("k1").value,gr=$("g1").value;$("c1").innerHTML=opts(CL(),c);fillK(k);fillGrade(gr);upd()}
+  cfRender()}
+const cflab=x=>{if(x.c==="G")return"Grille : "+nm(x.id);try{const o=JSON.parse(x.d);return(o.nom||"(sans nom)")+" · IM "+(o.im||"")}catch(e){return x.id}};
+function cfRender(){$("sy_c").innerHTML=CF.length?`<h3 style="font-size:15px;margin:14px 0 4px">Conflits (${CF.length})</h3><div class="hint">Quelqu’un d’autre a modifié la même fiche en même temps. La version du serveur est affichée ; votre version est conservée ici et dans la feuille « Historique ».</div>`+CF.map((x,i)=>`<div class="it"><h3>${esc(cflab(x))}</h3><p>${fmt(x.t.slice(0,10))}</p><div class="bar"><button class="btn p" data-cr="${i}">Réappliquer ma version</button><button class="btn" data-ci="${i}">Ignorer</button></div></div>`).join(""):""}
+$("sy_c").onclick=e=>{const b=e.target.closest("button");if(!b)return;
+  if(b.dataset.ci!==undefined){CF.splice(+b.dataset.ci,1);sv("rh_conf",CF,true);cfRender();syBadge();return}
+  if(b.dataset.cr!==undefined){if(!b.dataset.arm){b.dataset.arm=1;b.textContent="Confirmer ? (remplace la version du serveur)";return}
+    const x=CF[+b.dataset.cr];let o;try{o=JSON.parse(x.d)}catch(er){return}
+    if(x.c==="P"){const i=L.findIndex(p=>p.id===x.id);if(i>=0)L[i]=o;else L.unshift(o);sv("rh_pers",L)}else{G[x.id]=o;sv("rh_grille2",G)}
+    CF.splice(+b.dataset.cr,1);sv("rh_conf",CF,true);syRefresh(x.c==="G");syBadge()}};
+function syBadge(){const e=$("sy");let t,c="";
+  if(!syOn()){t="☁ Synchronisation non configurée — toucher ici";c="w"}
+  else{const n=syPending();
+    if(CF.length){t=`⚠ ${CF.length} conflit(s) à vérifier — toucher ici`;c="e"}
+    else if(syState==="run")t="☁ Synchronisation…";
+    else if(syState==="err"){t="⚠ "+syErr+(n?` · ${n} en attente (gardé sur ce téléphone)`:"");c="e"}
+    else if(syState==="off"){t="⚠ Hors ligne"+(n?` · ${n} en attente`:"");c="w"}
+    else{t="☁ Synchronisé"+(SY.last?" "+new Date(SY.last).toLocaleTimeString("fr-FR",{hour:"2-digit",minute:"2-digit"}):"")+(n?` · ${n} en attente`:"");if(n)c="w"}
+    if(SY.role==="r")t+=" · lecture seule"}
+  e.textContent=t;e.className="noprint "+c;
+  document.body.classList.toggle("ro",SY.role==="r"&&syOn());
+  $("sy_i").textContent=syOn()?("Rôle : "+(SY.role==="r"?"Chef (lecture seule)":SY.role==="w"?"RH (lecture et écriture)":"—")+(SY.last?" · dernière synchro "+new Date(SY.last).toLocaleString("fr-FR"):"")+(syErr&&syState==="err"?" · "+syErr:"")):"Mbola tsy mifandray amin’ny serveur."}
+$("sy").onclick=()=>{show(4);$("syp").open=true;$("syp").scrollIntoView()};
+$("sy_s").onclick=()=>{const u=$("sy_u").value.trim(),k=$("sy_k").value.trim();
+  if(!/^https:\/\/script\.google\.com\/macros\/s\/[^\/]+\/exec$/.test(u)){$("sy_i").textContent="Lien invalide : il doit ressembler à https://script.google.com/macros/s/…/exec";return}
+  if(!k){$("sy_i").textContent="Ampidiro ny clé d’accès.";return}
+  if(u!==SY.url){SS={P:{},G:{}};SY.role="";sv("rh_sy",SS,true)}
+  SY.url=u;SY.key=k;SY.nm=$("sy_n").value.trim();sv("rh_sync",SY,true);syRun()};
+$("sy_g").onclick=()=>syRun();
+$("sy_x").onclick=e=>{if(!e.target.dataset.arm){e.target.dataset.arm=1;e.target.textContent="Confirmer ?";return}
+  e.target.dataset.arm="";e.target.textContent="Déconnecter";
+  SY={url:"",key:"",nm:SY.nm,role:"",last:""};SS={P:{},G:{}};sv("rh_sync",SY,true);sv("rh_sy",SS,true);$("sy_u").value="";$("sy_k").value="";syState="";syBadge()};
+setInterval(()=>{if(!document.hidden)syRun()},60000);
+addEventListener("online",()=>syRun());
+document.addEventListener("visibilitychange",()=>{if(!document.hidden)syRun()});
 put(null);cnt();
+$("sy_u").value=SY.url;$("sy_k").value=SY.key;$("sy_n").value=SY.nm;cfRender();syBadge();
+window.__syr=true;if(syOn())setTimeout(syRun,1500);
 </script></body></html>
