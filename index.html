@@ -211,7 +211,7 @@ const FC=["Cat I (CEPE)","Cat II (BEPC)","Cat III (BAC)","Cat IV (Dipl. 1er cycl
 const FV=[[275,295,310,350,370,395,415,440,460,490,515,675],[380,415,435,455,490,515,540,570,605,640,675,1020],[500,540,580,620,665,715,765,825,885,950,1020,1550],[605,665,730,800,880,970,1065,1170,1285,1410,1550,1600],[650,710,780,850,930,1020,1115,1220,1335,1460,1600,1750],[750,815,900,970,1055,1145,1250,1360,1480,1610,1750,1850],[850,920,995,1075,1160,1255,1355,1465,1585,1710,1850,2225],[950,1035,1125,1225,1335,1455,1585,1725,1880,2045,2225,2325],[1100,1185,1280,1380,1485,1600,1725,1860,2000,2155,2325,2425],[0,0,0,0,0,1920,2120,2220,2450,2520,2620,0]];
 FV.forEach((col,c)=>o["Fonctionnaire|"+FC[c]]=FG.map((g,j)=>({g,i:""+col[j],y:""+FY[j]})).filter(x=>+x.i));
 return o})();
-if(ld("rh_seed",0)<2){for(const k in G)if(k.startsWith("EFA Auxiliaires|"))delete G[k];for(const k in DEF)if(!G[k])G[k]=DEF[k];sv("rh_grille2",G);try{localStorage.setItem("rh_seed","2")}catch(e){}}
+if(ld("rh_seed",0)<3){for(const k in G)if(k.startsWith("EFA Auxiliaires|"))delete G[k];for(const k in DEF)if(!G[k])G[k]=DEF[k];sv("rh_grille2",G);try{localStorage.setItem("rh_seed","3")}catch(e){}}
 const KS=()=>Object.keys(G),CL=()=>[...new Set(KS().map(k=>k.split("|")[0]))],KL=c=>KS().filter(k=>k.startsWith(c+"|")).map(k=>k.split("|")[1]),FK=(c,k)=>k?c+"|"+k:c;
 const ind=(c,g)=>((G[c]||[]).find(r=>r.g===g)||{}).i||"";
 const nm=k=>k.replace("|"," › ");
