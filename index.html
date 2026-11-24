@@ -83,7 +83,7 @@ header{position:relative}
 
 #sy{padding:7px 12px;text-align:center;font-size:13px;font-weight:600;background:var(--ab);color:var(--am);cursor:pointer}
 #sy.w{background:var(--al);color:var(--tx)}#sy.e{background:var(--dg);color:#fff}
-body.ro #sv,body.ro #nw,body.ro [data-d],body.ro #gsv,body.ro #gadd,body.ro #grow,body.ro #gdel,body.ro #gimp,body.ro #grst,body.ro label[for=rs],body.ro #gr button,body.ro #gnew,body.ro #gnewk{display:none!important}
+body.ro #sv,body.ro #nw,body.ro [data-d],body.ro #gsv,body.ro #gadd,body.ro #grow,body.ro #gdel,body.ro #gimp,body.ro #grst,body.ro #gmed,body.ro label[for=rs],body.ro #gr button,body.ro #gnew,body.ro #gnewk{display:none!important}
 </style></head><body>
 <div id="lk" hidden><div>
 <h2 id="lk_t">Teny miafina</h2>
@@ -93,7 +93,7 @@ body.ro #sv,body.ro #nw,body.ro [data-d],body.ro #gsv,body.ro #gadd,body.ro #gro
 <button class="btn p" id="lk_go" style="width:100%;margin-top:8px">Ouvrir</button>
 </div></div>
 <button id="inst">📲 Installer l’application</button>
-<header><button id="lkb" class="noprint" title="Verrouiller">🔒</button><small>Ressources Humaines</small><h1>GESTION DE PERSONNEL RH</h1></header><div id="sy" class="noprint"></div>
+<header><button id="lkb" class="noprint" title="Verrouiller">🔒</button><small>Ressources Humaines · v5</small><h1>GESTION DE PERSONNEL RH</h1></header><div id="sy" class="noprint"></div>
 <nav><button id="t1" class="on">Fiche</button><button id="t2">Liste (<span id="cnt">0</span>)</button><button id="t3">Grille</button><button id="t4">Tableau</button></nav>
 <main>
 <div id="v1">
@@ -155,7 +155,7 @@ body.ro #sv,body.ro #nw,body.ro [data-d],body.ro #gsv,body.ro #gadd,body.ro #gro
 <details class="c"><summary>Import / Export</summary>
 <div class="hint">Andalana tsirairay : Types;Catégorie;Grade;Indice;Ans</div>
 <textarea id="gt" rows="6" placeholder="Types;Catégorie;Grade;Indice;Ans"></textarea>
-<div class="bar"><button class="btn p" id="gimp">Importer</button><button class="btn" id="gexp">Hamoaka lahatsoratra</button><button class="btn d" id="grst">Averina ny grille de base</button></div></details>
+<div class="bar"><button class="btn p" id="gimp">Importer</button><button class="btn" id="gexp">Hamoaka lahatsoratra</button><button class="btn" id="gmed">Ampidiro ny grille Médecins</button><button class="btn d" id="grst">Averina ny grille de base</button></div></details>
 </div>
 
 <div id="v4" hidden>
@@ -358,6 +358,8 @@ $("gimp").onclick=()=>{
   sv("rh_grille2",G);gdraw();$("gt").value="";
 };
 $("gexp").onclick=()=>{$("gt").value=KS().flatMap(k=>{const[c,t]=k.split("|");return G[k].map(r=>`${c};${t||""};${r.g};${r.i};${r.y||""}`)}).join("\n")};
+$("gmed").onclick=e=>{let n=0;for(const k in DEF)if(k.startsWith("Médecins|")&&!G[k]){G[k]=JSON.parse(JSON.stringify(DEF[k]));n++}
+  if(n){sv("rh_grille2",G);syRefresh(true);gdraw()}e.target.textContent=n?"Vita ✓ : Médecins ampidirina":"Efa ao ny Médecins ✓"};
 $("grst").onclick=e=>{if(e.target.dataset.arm){for(const k in DEF)G[k]=JSON.parse(JSON.stringify(DEF[k]));sv("rh_grille2",G);e.target.dataset.arm="";e.target.textContent="Averina ny grille de base";gdraw()}else{e.target.dataset.arm=1;e.target.textContent="Confirmer ?"}};
 
 $("bk").onclick=()=>{const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify({v:1,L,G})],{type:"application/json"}));a.download="rh-backup-"+new Date().toISOString().slice(0,10)+".json";a.click()};
